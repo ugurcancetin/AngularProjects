@@ -1,0 +1,25 @@
+<div class="container" data-ng-controller="TodoController">
+  <header class="app-header mt-5">
+    <h1 class="app-title">Yapilicaklar Listesi</h1>
+  </header>
+
+  <section class="app-body">
+    <ul class="unstyled">
+      <li *ngFor="let item of toDoListArray">
+        <span class="hover-cursor" [class.text-success]="item.isChecked" (click)="alterCheck(item.$key, item.isChecked)">
+          <i class="fa fa-lg" [ngClass]="item.isChecked ? 'fa-check-circle-o' : 'fa-circle-thin'"></i>
+        </span>
+        {{item.title}}
+        <span class="hover-cursor text-danger pull-right" (click)="onDelete(item.$key)">
+          <i class="fa fa-trash-o fa-lg"></i>
+        </span>
+      </li>
+    </ul>
+
+    <form data-ng-submit="addTodo()" class="todo-form">
+      <input type="text" #itemTitle placeholder="Enter new ToDo item" />
+      <br />
+      <input type="button" (click)="onAdd(itemTitle)" value="Add Task" />
+    </form>
+  </section>
+</div>
